@@ -1,0 +1,35 @@
+version: '3.3'
+services:
+  pihole:
+    image: pihole/pihole
+    hostname: pihole
+    networks:
+      - pihole_network
+    ports:
+      - '0.0.0.0:53:53/tcp'
+      - '0.0.0.0:53:53/udp'
+      - '0.0.0.0:67:67/udp'
+      - '0.0.0.0:80:80/tcp'
+    dns:
+      - 127.0.0.1
+      - 1.1.1.1
+    volumes:
+      - pihole_data:/etc/pihole
+      - pihole_dnsmasqd:/etc/dnsmasq.d
+    environment:
+      - "ServerIP=192.168.1.150"
+      - "DNS1=127.0.0.1"
+      - "DNS2=1.1.1.1"
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints: [node.role == manager]
+    command: bash -c 'pihole -a -p "myadminpassword" && tail -f /dev/null'
+networks:
+  pihole_network:
+volumes:
+  pihole_data:
+    driver: local
+  pihole_dnsmasqd:
+    driver: local
