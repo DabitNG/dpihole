@@ -19,3 +19,6 @@ Starting up a container with DPiHole service (probably without deploy params)
 ```
 docker-compose up
 ```
+### Customize running
+Environment file was added to provide a separate path for common configurations in a DPiHole deployment.
+All variables must been provided.
