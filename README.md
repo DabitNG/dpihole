@@ -21,4 +21,12 @@ docker-compose up
 ```
 ### Customize running
 Environment file was added to provide a separate path for common configurations in a DPiHole deployment.
-All variables must been provided.
+All variables must been provided. This is a preview of default configuration
+```
+PIHOLE_HOSTNAME=dpihole
+PIHOLE_PORT=80
+PIHOLE_IP=192.168.1.150
+PIHOLE_DNS1=127.0.0.1
+PIHOLE_DNS2=1.1.1.1
+PIHOLE_PASS=myadminpassword
+```
